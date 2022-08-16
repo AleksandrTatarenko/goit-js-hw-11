@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 
-import refs from './index';
+//import refs from './index';
 
 const BASE_URL = 'https://pixabay.com/api/?key=29260486-d8b85945fd4ab908f9057b328';
 
