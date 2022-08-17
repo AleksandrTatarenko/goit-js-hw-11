@@ -39,7 +39,7 @@ function onFormInput(e) {
 
 function renderImageCard(images) {
    console.log(images.totalHits);
-   if (images.length == 0) {
+   if (images.length === null) {
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
    } else if (images.length < 40) {
       const markup = (images.hits).map((image) => {
