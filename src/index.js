@@ -1,7 +1,7 @@
 var throttle = require('lodash.throttle');
 import API from './fetchImages';
 import Notiflix from 'notiflix';
-import SimpleLightbox from "simplelightbox";
+//import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const refs = {
@@ -39,7 +39,7 @@ function onFormInput(e) {
 
 function renderImageCard(images) {
    console.log(images.totalHits);
-   if (images.totalHits == 0) {
+   if (images.length == 0) {
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
    } else if (images.length < 40) {
       const markup = (images.hits).map((image) => {
@@ -88,18 +88,18 @@ function renderImageCard(images) {
    }).join('');
       refs.imageBox.innerHTML = markup;
       Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
-   }
+   };
 }
 function onButtonClick(e) {
    e.preventDefault();
-   //refs.clickCount += 1;
-   //console.log(refs.clickCount)
-   //API.getTodoItems(refs.imageTag)
-   //.then(renderImageCard)
-   //.catch(catchError)
+   refs.clickCount += 1;
+   console.log(refs.clickCount)
+   API.getTodoItems(refs.imageTag)
+   .then(renderImageCard)
+   .catch(catchError)
 }
 function catchError(error) {
    console.error(error);
 }
-//export default {refs}
+export default { refs };
 //var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
