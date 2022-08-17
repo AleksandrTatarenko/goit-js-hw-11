@@ -8,7 +8,7 @@ async function getTodoItems(tag) {
 try {
   const response = await axios.get(`${BASE_URL}&q=${tag}&image_type=photo&orientation=horizontal&safesearch=true`, {
     params: {
-      page: (1+refs.clickCount),
+      //page: (1+refs.clickCount),
       per_page: 40,
     }});
 const todoItems = response.data;

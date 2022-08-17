@@ -92,11 +92,11 @@ function renderImageCard(images) {
 }
 function onButtonClick(e) {
    e.preventDefault();
-   refs.clickCount += 1;
-   console.log(refs.clickCount)
-   API.getTodoItems(refs.imageTag)
-   .then(renderImageCard)
-   .catch(catchError)
+   //refs.clickCount += 1;
+   //console.log(refs.clickCount)
+   //API.getTodoItems(refs.imageTag)
+   //.then(renderImageCard)
+   //.catch(catchError)
 }
 function catchError(error) {
    console.error(error);
