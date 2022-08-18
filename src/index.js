@@ -2,7 +2,7 @@ var throttle = require('lodash.throttle');
 import API from './fetchImages';
 import Notiflix from 'notiflix';
 //import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+//import "simplelightbox/dist/simple-lightbox.min.css";
 
 const refs = {
    searchForm: document.getElementById('search-form'),
@@ -38,9 +38,10 @@ function onFormInput(e) {
 
 function renderImageCard(images) {
    console.log(images.totalHits);
-   if (images.totalHits === 0) {
+   console.log(images);
+   if (images.hits.length === 0) {
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-   } else if (images.length < 40) {
+   } else if (images.hits.length < 40) {
       const markup = (images.hits).map((image) => {
       return `<div class="photo-card">
          <img class="gallery__image" src="${image.webformatURL}" alt="${image.tag}" loading="lazy" />
@@ -61,7 +62,6 @@ function renderImageCard(images) {
       </div>`
    }).join('');
       refs.imageBox.insertAdjacentHTML('beforeend', markup);
-      Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
       Notiflix.Notify.success('We are sorry, but you have reached the end of search results.');
    } else {
    refs.buttonMore.classList.remove('hidden');
@@ -85,7 +85,6 @@ function renderImageCard(images) {
          </div>
       </div>`
    }).join('');
-      console.log(markup);
       refs.imageBox.insertAdjacentHTML('beforeend', markup);
       Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
    };
@@ -98,8 +97,6 @@ function onButtonClick(e) {
    .then(renderImageCard)
    .catch(catchError)
 };
-
-console.log(refs.clickCount);
 
 function catchError(error) {
    console.error(error);
