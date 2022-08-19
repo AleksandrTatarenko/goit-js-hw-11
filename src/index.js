@@ -103,3 +103,8 @@ function onButtonClick(e) {
 function catchError(error) {
    console.error(error);
 }
+import SimpleLightbox from "simplelightbox";
+
+var lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250, });
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
