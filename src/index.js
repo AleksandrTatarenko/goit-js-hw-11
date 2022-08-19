@@ -1,8 +1,6 @@
 var throttle = require('lodash.throttle');
 import API from './fetchImages';
 import Notiflix from 'notiflix';
-//import SimpleLightbox from "simplelightbox";
-//import "simplelightbox/dist/simple-lightbox.min.css";
 
 const refs = {
    searchForm: document.getElementById('search-form'),
@@ -31,9 +29,11 @@ function onFormInput(e) {
    e.preventDefault();
    refs.imageBox.innerHTML = '';
    const SearchTag = refs.imageTag;
+   if (SearchTag) {
    API.getTodoItems(SearchTag, refs.clickCount)
    .then(renderImageCard)
    .catch(catchError)
+      };
    }
 
 function renderImageCard(images) {
@@ -63,6 +63,8 @@ function renderImageCard(images) {
    }).join('');
       refs.imageBox.insertAdjacentHTML('beforeend', markup);
       Notiflix.Notify.success('We are sorry, but you have reached the end of search results.');
+      refs.buttonMore.classList.remove('load-more');
+      refs.buttonMore.classList.add('hidden');
    } else {
    refs.buttonMore.classList.remove('hidden');
    refs.buttonMore.classList.add('load-more');
@@ -101,5 +103,3 @@ function onButtonClick(e) {
 function catchError(error) {
    console.error(error);
 }
-export default { refs };
-//var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
