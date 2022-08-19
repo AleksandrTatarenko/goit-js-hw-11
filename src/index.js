@@ -44,7 +44,7 @@ function renderImageCard(images) {
    } else if (images.hits.length < 40) {
       const markup = (images.hits).map((image) => {
       return `<div class="photo-card">
-         <img class="gallery__image" src="${image.webformatURL}" alt="${image.tag}" loading="lazy" />
+         <a href="${image.largeImageURL}"><img class="gallery__image" src="${image.webformatURL}" alt="${image.tag}" loading="lazy" /></a>
          <div class="info">
             <p class="info-item">
                <b>Likes ${image.likes}</b>
@@ -70,7 +70,7 @@ function renderImageCard(images) {
    refs.buttonMore.classList.add('load-more');
    const markup = (images.hits).map((image) => {
       return `<div class="photo-card">
-         <img class="gallery__image" src="${image.webformatURL}" alt="${image.tag}" loading="lazy" />
+         <a href="${image.largeImageURL}"><img class="gallery__image" src="${image.webformatURL}" alt="${image.tag}" loading="lazy" /></a>
          <div class="info">
             <p class="info-item">
                <b>Likes ${image.likes}</b>
@@ -103,3 +103,9 @@ function onButtonClick(e) {
 function catchError(error) {
    console.error(error);
 }
+
+import SimpleLightbox from "simplelightbox";
+
+var lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250, });
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
