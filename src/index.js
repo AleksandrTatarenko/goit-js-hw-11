@@ -65,6 +65,7 @@ function renderImageCard(images) {
       Notiflix.Notify.success('We are sorry, but you have reached the end of search results.');
       refs.buttonMore.classList.remove('load-more');
       refs.buttonMore.classList.add('hidden');
+      lightbox.refresh();
    } else {
    refs.buttonMore.classList.remove('hidden');
    refs.buttonMore.classList.add('load-more');
@@ -89,6 +90,7 @@ function renderImageCard(images) {
    }).join('');
       refs.imageBox.insertAdjacentHTML('beforeend', markup);
       Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
+      lightbox.refresh();
    };
 };
 
